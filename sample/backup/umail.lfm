@@ -1,0 +1,54 @@
+object frmMain: TfrmMain
+  Left = 393
+  Height = 510
+  Top = 120
+  Width = 689
+  Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
+  ClientHeight = 510
+  ClientWidth = 689
+  LCLVersion = '2.0.0.4'
+  object gbAbout: TGroupBox
+    Left = 0
+    Height = 63
+    Top = 0
+    Width = 689
+    Align = alTop
+    Caption = ' About '
+    ClientHeight = 43
+    ClientWidth = 685
+    TabOrder = 0
+    object lbAbout: TLabel
+      Left = 0
+      Height = 43
+      Top = 0
+      Width = 685
+      Align = alClient
+      Caption = 'This sample application has developed with Lazarus and Free Pascal to provide a simple GUI to test and show the classes of this repository.'
+      ParentColor = False
+      WordWrap = True
+    end
+  end
+  object PageControl: TPageControl
+    Left = 0
+    Height = 424
+    Top = 63
+    Width = 689
+    ActivePage = tsRpii2c
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 1
+    object tsRpiio: TTabSheet
+      Caption = 'GPIO (rpiio)'
+    end
+    object tsRpii2c: TTabSheet
+      Caption = 'I2c (Rpii2c)'
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 487
+    Width = 689
+    Panels = <>
+  end
+end

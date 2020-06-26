@@ -8,12 +8,16 @@ unit rpii2c;
 
 interface
 
-uses baseunix, sysutils, classes;
+uses
+{$IFDEF UNIX}
+  baseunix,
+{$ENDIF}
+  sysutils, classes, rpii2cAPI;
 
 type
-  trpiI2CHandle = cint;
+  //trpiI2CHandle = cint;
 
-  trpiI2CDevice = class(tobject)
+  trpiI2CDevice = class(trpiI2CDeviceAbstract)
     private
       deviceHandle: trpiI2CHandle;
       isOpen: boolean;
@@ -23,14 +27,14 @@ type
       constructor Create;
       destructor Destroy; override;
 
-      procedure closeDevice;
+      procedure closeDevice; override;
 
-      procedure openDevice(address: cint);
-      procedure setRegister(register: byte; value: byte);
-      function getRegister(register: byte): byte;
-      procedure writeByte(value: byte);
-      procedure writeBytes(bytes: pointer; length: longint);
-      function readByte: byte;
+      procedure openDevice(address: cint); override;
+      procedure setRegister(register: byte; value: byte); override;
+      function getRegister(register: byte): byte; override;
+      procedure writeByte(value: byte); override;
+      procedure writeBytes(bytes: pointer; length: longint); override;
+      function readByte: byte; override;
   end;
 
 implementation
