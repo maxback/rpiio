@@ -118,13 +118,13 @@ var
   bytes: array[0..255] of Byte;
   i: integer;
   len: longint;
-  m, s: string;
+  m: string;
 begin
+  s := StringReplace(edtBytes.Text, ' ', ',', [Rfreplaceall]);
   sl := TStringList.Create;
   try
      m := 'writeByte';
      try
-       s := StringReplace(edtBytes.Text, ' ', ',', [Rfreplaceall]);
        sl.CommaText := s;
        if sl.Count = 1 then
          FoI2cService.writeByte(Byte(sl[0].ToInteger))
