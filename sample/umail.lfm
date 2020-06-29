@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 387
+  Left = 276
   Height = 617
-  Top = 48
+  Top = 35
   Width = 525
   Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
   ClientHeight = 617

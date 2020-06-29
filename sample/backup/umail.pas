@@ -44,6 +44,7 @@ type
     procedure btnSetRegisterI2cClick(Sender: TObject);
     procedure btnWriteBytesI2cClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     FoI2cServiceMock: TrpiI2CDeviceMock;
     FoI2cService: trpiI2CDeviceAbstract;
@@ -138,7 +139,14 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  rpii2cMock
+  FoI2cServiceMock := TrpiI2CDeviceMock.Create;
+  //default
+  DefineService(FoI2cServiceMock);
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  FoI2cServiceMock.Free;
 end;
 
 procedure TfrmMain.log(const method, parameters, returned: string);
