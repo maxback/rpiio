@@ -5,6 +5,9 @@ unit rpii2cAPI;
 interface
 
 uses
+{$IFDEF UNIX}
+  baseunix,
+{$ENDIF}
   Classes, SysUtils;
 
 type
@@ -12,9 +15,9 @@ type
 {$IFDEF Windows}
  trpiI2CHandle = integer;
  cint = integer;
-{$ELSE}
-  trpiI2CHandle = cint;
-{$ENDIF}
+ {$ELSE}
+   trpiI2CHandle = cint;
+ {$ENDIF}
 
   trpiI2CDeviceAbstract = class(tobject)
       procedure closeDevice; virtual; abstract;

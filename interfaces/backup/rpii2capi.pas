@@ -8,12 +8,14 @@ uses
   Classes, SysUtils;
 
 type
+
 {$IFDEF Windows}
  trpiI2CHandle = integer;
  cint = integer;
 {$ELSE}
   trpiI2CHandle = cint;
 {$ENDIF}
+
   trpiI2CDeviceAbstract = class(tobject)
       procedure closeDevice; virtual; abstract;
 

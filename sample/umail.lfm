@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 276
+  Left = 861
   Height = 617
-  Top = 35
+  Top = 153
   Width = 525
   Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
   ClientHeight = 617
@@ -16,14 +16,14 @@ object frmMain: TfrmMain
     Width = 525
     Align = alTop
     Caption = ' About '
-    ClientHeight = 43
-    ClientWidth = 521
+    ClientHeight = 40
+    ClientWidth = 523
     TabOrder = 0
     object lbAbout: TLabel
       Left = 0
-      Height = 43
+      Height = 40
       Top = 0
-      Width = 521
+      Width = 523
       Align = alClient
       Caption = 'This sample application has developed with Lazarus and Free Pascal to provide a simple GUI to test and show the classes of this repository.'
       ParentColor = False
@@ -44,13 +44,13 @@ object frmMain: TfrmMain
     end
     object tsRpii2c: TTabSheet
       Caption = 'I2c (Rpii2c)'
-      ClientHeight = 357
-      ClientWidth = 517
+      ClientHeight = 337
+      ClientWidth = 515
       object StaticText1: TStaticText
         Left = 0
         Height = 17
         Top = 0
-        Width = 517
+        Width = 515
         Align = alTop
         Caption = '&Address:'
         FocusControl = edtAddress
@@ -58,9 +58,9 @@ object frmMain: TfrmMain
       end
       object edtAddress: TEdit
         Left = 0
-        Height = 23
+        Height = 32
         Top = 17
-        Width = 517
+        Width = 515
         Align = alTop
         TabOrder = 1
         Text = '1'
@@ -68,10 +68,10 @@ object frmMain: TfrmMain
       object gbOpenCloseI2c: TGroupBox
         Left = 0
         Height = 57
-        Top = 40
-        Width = 517
+        Top = 49
+        Width = 515
         Align = alTop
-        ClientHeight = 37
+        ClientHeight = 55
         ClientWidth = 513
         TabOrder = 2
         object btnOpenI2c: TButton
@@ -96,17 +96,17 @@ object frmMain: TfrmMain
       object gbSetGetRegisterI2c: TGroupBox
         Left = 0
         Height = 144
-        Top = 97
-        Width = 517
+        Top = 106
+        Width = 515
         Align = alTop
         Caption = ' Register '
-        ClientHeight = 124
+        ClientHeight = 121
         ClientWidth = 513
         TabOrder = 3
         object btnSetRegisterI2c: TButton
           Left = 8
           Height = 25
-          Top = 87
+          Top = 84
           Width = 75
           Anchors = [akLeft, akBottom]
           Caption = '&Set'
@@ -116,7 +116,7 @@ object frmMain: TfrmMain
         object btnGetRegisterI2c: TButton
           Left = 102
           Height = 25
-          Top = 89
+          Top = 86
           Width = 75
           Anchors = [akLeft, akBottom]
           Caption = '&Get'
@@ -135,7 +135,7 @@ object frmMain: TfrmMain
         end
         object edtRegister: TEdit
           Left = 0
-          Height = 23
+          Height = 32
           Top = 17
           Width = 513
           Align = alTop
@@ -145,7 +145,7 @@ object frmMain: TfrmMain
         object StaticText3: TStaticText
           Left = 0
           Height = 17
-          Top = 40
+          Top = 49
           Width = 513
           Align = alTop
           Caption = '&Value:'
@@ -154,8 +154,8 @@ object frmMain: TfrmMain
         end
         object edtValueRegister: TEdit
           Left = 0
-          Height = 23
-          Top = 57
+          Height = 32
+          Top = 66
           Width = 513
           Align = alTop
           TabOrder = 5
@@ -165,17 +165,17 @@ object frmMain: TfrmMain
       object gbWriteReadBytesI2c: TGroupBox
         Left = 0
         Height = 104
-        Top = 241
-        Width = 517
+        Top = 250
+        Width = 515
         Align = alTop
         Caption = ' Communication '
-        ClientHeight = 84
+        ClientHeight = 81
         ClientWidth = 513
         TabOrder = 4
         object btnWriteBytesI2c: TButton
           Left = 8
           Height = 25
-          Top = 47
+          Top = 44
           Width = 75
           Anchors = [akLeft, akBottom]
           Caption = '&Write'
@@ -185,7 +185,7 @@ object frmMain: TfrmMain
         object btnReadByteI2c: TButton
           Left = 102
           Height = 25
-          Top = 49
+          Top = 46
           Width = 75
           Anchors = [akLeft, akBottom]
           Caption = '&Read'
@@ -204,7 +204,7 @@ object frmMain: TfrmMain
         end
         object edtBytes: TEdit
           Left = 0
-          Height = 23
+          Height = 32
           Top = 17
           Width = 513
           Align = alTop
@@ -216,8 +216,8 @@ object frmMain: TfrmMain
   end
   object StatusBar: TStatusBar
     Left = 0
-    Height = 23
-    Top = 594
+    Height = 24
+    Top = 593
     Width = 525
     Panels = <    
       item
@@ -227,7 +227,7 @@ object frmMain: TfrmMain
   end
   object mmLog: TMemo
     Left = 0
-    Height = 146
+    Height = 145
     Top = 448
     Width = 525
     Align = alClient
