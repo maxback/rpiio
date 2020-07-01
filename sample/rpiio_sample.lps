@@ -4,13 +4,14 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="9">
+    <Units Count="11">
       <Unit0>
         <Filename Value="rpiio_sample.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="41" Y="30"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="13"/>
+        <CursorPos X="50" Y="35"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,9 +20,10 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="50"/>
-        <CursorPos X="29" Y="69"/>
-        <UsageCount Value="28"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="247"/>
+        <CursorPos X="32" Y="257"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,23 +32,24 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="rpii2cAPI"/>
         <EditorIndex Value="5"/>
-        <CursorPos X="24" Y="19"/>
-        <UsageCount Value="28"/>
+        <CursorPos X="48" Y="20"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="services\rpii2cMock.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="54" Y="12"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="56" Y="13"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="..\rpii2c.pas"/>
-        <EditorIndex Value="6"/>
-        <CursorPos X="12" Y="240"/>
-        <UsageCount Value="14"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="19"/>
+        <CursorPos X="44" Y="32"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -54,7 +57,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="147"/>
         <CursorPos X="14" Y="157"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -62,7 +65,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="25"/>
         <CursorPos X="8" Y="35"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -70,136 +73,157 @@
         <EditorIndex Value="1"/>
         <TopLine Value="113"/>
         <CursorPos X="16" Y="122"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\rpigpio.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="11" Y="240"/>
-        <UsageCount Value="14"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="31"/>
+        <CursorPos X="13" Y="24"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit8>
+      <Unit9>
+        <Filename Value="..\interfaces\rpigpioapi.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rpigpioAPI"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="38"/>
+        <CursorPos X="19" Y="50"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="services\rpigpiomock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rpigpioMock"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="6"/>
+        <CursorPos X="55" Y="24"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit10>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="30" TopLine="12"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="206" Column="3" TopLine="189"/>
       </Position1>
       <Position2>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="12" Column="5" TopLine="3"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="211" Column="34" TopLine="197"/>
       </Position2>
       <Position3>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="19" Column="15" TopLine="8"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="236" Column="46" TopLine="222"/>
       </Position3>
       <Position4>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="22" TopLine="8"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="242" Column="68" TopLine="226"/>
       </Position4>
       <Position5>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="30" TopLine="15"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="336" Column="20" TopLine="325"/>
       </Position5>
       <Position6>
-        <Filename Value="rpiio_sample.lpr"/>
-        <Caret Line="37" TopLine="17"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="88" Column="28" TopLine="75"/>
       </Position6>
       <Position7>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="22" Column="7" TopLine="4"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="333" Column="33" TopLine="309"/>
       </Position7>
       <Position8>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="41" Column="12" TopLine="41"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="371" Column="16" TopLine="347"/>
       </Position8>
       <Position9>
         <Filename Value="umail.pas"/>
-        <Caret Line="68" TopLine="57"/>
+        <Caret Line="429" Column="33" TopLine="405"/>
       </Position9>
       <Position10>
         <Filename Value="umail.pas"/>
-        <Caret Line="140" Column="13" TopLine="129"/>
+        <Caret Line="88" Column="28" TopLine="75"/>
       </Position10>
       <Position11>
         <Filename Value="umail.pas"/>
-        <Caret Line="48" Column="5" TopLine="42"/>
+        <Caret Line="301" TopLine="301"/>
       </Position11>
       <Position12>
         <Filename Value="umail.pas"/>
-        <Caret Line="143" Column="19" TopLine="138"/>
+        <Caret Line="365" Column="36" TopLine="351"/>
       </Position12>
       <Position13>
         <Filename Value="umail.pas"/>
-        <Caret Line="142" Column="19" TopLine="139"/>
+        <Caret Line="64" Column="31" TopLine="51"/>
       </Position13>
       <Position14>
         <Filename Value="umail.pas"/>
-        <Caret Line="149" Column="25" TopLine="139"/>
+        <Caret Line="101" TopLine="77"/>
       </Position14>
       <Position15>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="29" Column="25" TopLine="20"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="374" Column="42" TopLine="360"/>
       </Position15>
       <Position16>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="28" Column="29" TopLine="20"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="66" Column="37" TopLine="53"/>
       </Position16>
       <Position17>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="34" Column="29" TopLine="20"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="383" Column="70" TopLine="371"/>
       </Position17>
       <Position18>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="39" Column="29" TopLine="21"/>
+        <Filename Value="umail.pas"/>
       </Position18>
       <Position19>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="44" Column="28" TopLine="26"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="78" Column="25" TopLine="55"/>
       </Position19>
       <Position20>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="49" Column="29" TopLine="31"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="320" Column="17" TopLine="315"/>
       </Position20>
       <Position21>
-        <Filename Value="services\rpii2cMock.pas"/>
-        <Caret Line="54" Column="29" TopLine="36"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="321" Column="17" TopLine="315"/>
       </Position21>
       <Position22>
         <Filename Value="umail.pas"/>
-        <Caret Line="149" Column="19" TopLine="139"/>
+        <Caret Line="322" Column="17" TopLine="315"/>
       </Position22>
       <Position23>
         <Filename Value="umail.pas"/>
+        <Caret Line="48" Column="19" TopLine="35"/>
       </Position23>
       <Position24>
         <Filename Value="umail.pas"/>
-        <Caret Line="50" Column="17" TopLine="24"/>
+        <Caret Line="229" Column="37" TopLine="203"/>
       </Position24>
       <Position25>
-        <Filename Value="..\rpigpio.pas"/>
-        <Caret TopLine="151"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="129" Column="46" TopLine="115"/>
       </Position25>
       <Position26>
-        <Filename Value="..\rpigpio.pas"/>
-        <Caret Line="80" Column="27" TopLine="65"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="126" TopLine="112"/>
       </Position26>
       <Position27>
-        <Filename Value="..\rpigpio.pas"/>
-        <Caret Line="265" Column="41" TopLine="257"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="342" Column="58" TopLine="340"/>
       </Position27>
       <Position28>
-        <Filename Value="..\rpigpio.pas"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="347" Column="58" TopLine="340"/>
       </Position28>
       <Position29>
-        <Filename Value="..\rpigpio.pas"/>
-        <Caret Line="67" Column="9" TopLine="44"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="123" Column="3" TopLine="117"/>
       </Position29>
       <Position30>
-        <Filename Value="..\rpigpio.pas"/>
-        <Caret Line="68" Column="64" TopLine="44"/>
+        <Filename Value="umail.pas"/>
+        <Caret Line="347" Column="51" TopLine="345"/>
       </Position30>
     </JumpHistory>
     <RunParams>

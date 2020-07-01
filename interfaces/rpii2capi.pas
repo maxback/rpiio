@@ -16,7 +16,7 @@ type
   trpiI2CHandle = cint;
 {$ENDIF}
 
-  trpiI2CDeviceAbstract = class(tobject)
+  trpiI2CDeviceAbstract = class(TObject)
       procedure closeDevice; virtual; abstract;
 
       procedure openDevice(address: cint); virtual; abstract;

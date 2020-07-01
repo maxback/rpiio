@@ -7,9 +7,10 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, umail, rpii2cMock, rpii2cAPI
+  Forms, umail, rpii2cMock, rpii2cAPI, rpigpioAPI, rpigpioMock
   {$IFDEF UNIX}
-  , rpii2c in '../rpii2c.pas'
+  , rpii2c in '../rpii2c.pas',
+  rpigpio  in '../rpigpio.pas'
   {$ENDIF}
   { you can add units after this };
 
@@ -17,7 +18,8 @@ uses
 
 {$IFDEF UNIX}
 var
-  I2cService: trpiI2CDevice;
+  oI2cService: TrpiI2CDevice;
+  oGPIOService: TrpiGPIO;
   {$ENDIF}
 begin
   RequireDerivedFormResource:=True;
@@ -25,12 +27,14 @@ begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
 {$IFDEF UNIX}
-    I2cService := TrpiI2CDevice.Create;
+    oI2cService := TrpiI2CDevice.Create;
+    oGPIOService := TrpiGPIO.Create;
     try
-        frmMain.DefineService(I2cService);
-        Application.Run;
+      frmMain.DefineService(oI2cService, oGPIOService);
+      Application.Run;
   finally
-    I2cService.Free;
+    oGPIOService.Free;
+    oI2cService.Free;
   end;
 {$ELSE}
     Application.Run;

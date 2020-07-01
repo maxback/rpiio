@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="6">
       <Unit0>
         <Filename Value="rpiio_sample.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -40,6 +40,7 @@
         <Filename Value="umail.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
@@ -47,6 +48,20 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="rpii2cAPI"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="services\rpii2cMock.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\interfaces\rpigpioapi.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rpigpioAPI"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="services\rpigpiomock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rpigpioMock"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -57,7 +72,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\interfaces"/>
+      <OtherUnitFiles Value="..\interfaces;services"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

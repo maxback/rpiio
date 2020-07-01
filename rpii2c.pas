@@ -17,7 +17,7 @@ uses
 type
   //trpiI2CHandle = cint;
 
-  trpiI2CDevice = class(trpiI2CDeviceAbstract)
+  TrpiI2CDevice = class(TrpiI2CDeviceAbstract)
     private
       deviceHandle: trpiI2CHandle;
       isOpen: boolean;

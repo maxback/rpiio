@@ -8,7 +8,11 @@ unit rpii2c;
 
 interface
 
-uses baseunix, sysutils, classes, rpii2cAPI;
+uses
+{$IFDEF UNIX}
+  baseunix,
+{$ENDIF}
+  sysutils, classes, rpii2cAPI;
 
 type
   //trpiI2CHandle = cint;
