@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1549255624"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -Fi/home/pi/git/rpiio/sample/lib/arm-linux -Fu/home/pi/git/rpiio/interfaces -Fu/home/pi/git/rpiio/sample/services -Fu/usr/lib/lazarus/2.0.0/lcl/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/2.0.0/lcl/units/arm-linux -Fu/usr/lib/lazarus/2.0.0/components/lazutils/lib/arm-linux -Fu/usr/lib/lazarus/2.0.0/packager/units/arm-linux -Fu/home/pi/git/rpiio/sample/ -FU/home/pi/git/rpiio/sample/lib/arm-linux/ -FE/home/pi/git/rpiio/sample/ -o/home/pi/git/rpiio/sample/rpiio_sample -dLCL -dLCLgtk2 rpiio_sample.lpr"/>
-</CONFIG>

@@ -10,7 +10,7 @@ unit rpigpio;
 
 interface
 
-uses sysutils, classes;
+uses sysutils, classes, rpigpioAPI;
 
 const
   { fpmap uses page offsets, each page is 4KB. BCM2385 GPIO register map starts at $20000000,
@@ -41,11 +41,11 @@ const
         procedure shutdown; override;
 
         procedure setPinMode(pin, mode: byte); override;
-        function readPin(pin: byte): boolean; inline; override;
-        procedure clearPin(pin: byte); inline; override;
-        procedure setPin(pin: byte); inline; override;
+        function readPin(pin: byte): boolean; override;
+        procedure clearPin(pin: byte); override;
+        procedure setPin(pin: byte); override;
         procedure setPullupMode(pin, mode: byte); override;
-        procedure PWMWrite(pin: byte; value: longword); inline; override;
+        procedure PWMWrite(pin: byte; value: longword); override;
     end;
 
 procedure delayNanoseconds(delaytime: longword);
@@ -93,10 +93,9 @@ function trpiGPIO.initialise(newPi: boolean): boolean;
 var
   gpio_base, clock_base, gpio_pwm: int64;
 begin
-  if self.initialised then begin
+  if self.initialised then
     raise exception.create('trpiGPIO.initialise: Already initialised');
-  end;
-  
+
   { Open the GPIO memory file, this should work as non root as long as the
     account is a member of the gpio group }
   result := false;
@@ -167,6 +166,9 @@ var
   fsel, shift, alt: byte;
   gpiof, clkf, pwmf: ^longword;
 begin
+  if not self.initialised then
+    raise exception.create('trpiGPIO.setPinMode: Not initialised');
+
   fsel := (pin div 10) * 4;
   shift := (pin mod 10) * 3;
   gpiof := pointer(longword(self.gpioptr) + fsel);
@@ -226,7 +228,10 @@ function trpiGPIO.readPin(pin: byte): boolean; inline;
 var
   gpiof: ^longword;
 begin
-  gpiof := pointer(longword(self.gpioptr) + 52 + (pin shr 5) shl 2);
+  if not self.initialised then
+    raise exception.create('trpiGPIO.readPin: Not initialised');
+
+    gpiof := pointer(longword(self.gpioptr) + 52 + (pin shr 5) shl 2);
   if (gpiof^ and (1 shl pin)) = 0 then begin
     result := false;
   end else begin
@@ -241,7 +246,10 @@ procedure trpiGPIO.clearPin(pin: byte); inline;
 var
   gpiof : ^longword;
 begin
-  gpiof := pointer(longword(self.gpioptr) + 40 + (pin shr 5) shl 2);
+  if not self.initialised then
+    raise exception.create('trpiGPIO.clearPin: Not initialised');
+
+    gpiof := pointer(longword(self.gpioptr) + 40 + (pin shr 5) shl 2);
   gpiof^ := 1 shl pin;
 end;
 
@@ -252,7 +260,10 @@ procedure trpiGPIO.setPin(pin: byte); inline;
 var
   gpiof: ^longword;
 begin
-  gpiof := pointer(longword(self.gpioptr) + 28 + (pin shr 5) shl 2);
+  if not self.initialised then
+    raise exception.create('trpiGPIO.setPin: Not initialised');
+
+    gpiof := pointer(longword(self.gpioptr) + 28 + (pin shr 5) shl 2);
   gpiof^ := 1 shl pin;
 end;
 
@@ -267,6 +278,9 @@ procedure trpiGPIO.setPullupMode(pin, mode: byte);
 var
   pudf, pudclkf: ^longword;
 begin
+  if not self.initialised then
+    raise exception.create('trpiGPIO.setPullupMode: Not initialised');
+
   pudf := pointer(longword(self.gpioptr) + 148);
   pudf^ := mode;
   delayNanoseconds(200);
@@ -285,6 +299,9 @@ var
   pwmf : ^longword;
   port : byte;
 begin
+  if not self.initialised then
+    raise exception.create('trpiGPIO.PWMWrite: Not initialised');
+
   case pin of
     12, 18, 40: begin
       port := RPIGPIO_PWM0_DATA;

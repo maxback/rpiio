@@ -13,6 +13,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    btnCloseI2c: TButton;
     btnSetPullUpMode: TButton;
     btnReadPinGPIO: TButton;
     btnClearPinGPIO1: TButton;
@@ -43,12 +44,15 @@ type
     gbReadWriteGPIO: TGroupBox;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
+    lbPinPWMAlert: TLabel;
     lbAbout: TLabel;
+    lbconfiguredPinsGPIO: TListBox;
     lbPinModesGPIO: TListBox;
     lbPinPullUpModesGPIO: TListBox;
+    lbTryConfigGPIO: TLabel;
     mmLog: TMemo;
     PageControl: TPageControl;
-    pnModesGPIO: TPanel;
+        pnModesGPIO: TPanel;
     ScrollBoxMain: TScrollBox;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
@@ -75,12 +79,17 @@ type
     procedure btnSetRegisterI2cClick(Sender: TObject);
     procedure btnShutdownGPIOClick(Sender: TObject);
     procedure btnWriteBytesI2cClick(Sender: TObject);
+    procedure edtPinToConfigModeGPIOChange(Sender: TObject);
     procedure edtPinToRWGPIOChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure lbconfiguredPinsGPIOClick(Sender: TObject);
+    procedure lbconfiguredPinsGPIODblClick(Sender: TObject);
     procedure lbPinModesGPIOClick(Sender: TObject);
     procedure lbPinPullUpModesGPIOClick(Sender: TObject);
   private
+    FslPinModes: TStringList;
+    FslPullUpModes: TStringList;
     FoI2cServiceMock: TrpiI2CDeviceMock;
     FoGPIOServiceMock: TrpiGPIOMock;
 
@@ -111,7 +120,10 @@ begin
      log(m, edtPinToRWGPIO.Text, 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, edtPinToRWGPIO.Text, e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -129,10 +141,18 @@ begin
      FoGPIOService.setPullupMode(byte(StrToInt(edtPinToConfigModeGPIO.Text)),
        byte(lbPinPullUpModesGPIO.ItemIndex));
 
+    if lbconfiguredPinsGPIO.Items.IndexOf(edtPinToConfigModeGPIO.Text) < 0 then
+      lbconfiguredPinsGPIO.Items.Add(edtPinToConfigModeGPIO.Text);
+
+    FslPullUpModes.Values[edtPinToConfigModeGPIO.Text] := IntToStr(lbPinPullUpModesGPIO.ItemIndex);
+
      log(m, params, 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, params, e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -172,7 +192,10 @@ begin
      log(m, params, 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, params, e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -204,6 +227,7 @@ begin
   except
     on E:Exception do
        log(m, edtPinToRWGPIO.Text, e.ClassName + ': ' + e.ToString);
+
   end;
 end;
 
@@ -216,7 +240,10 @@ begin
      log(m, edtPinToRWGPIO.Text, 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, edtPinToRWGPIO.Text, e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -234,10 +261,18 @@ begin
      FoGPIOService.setPinMode(byte(StrToInt(edtPinToConfigModeGPIO.Text)),
        byte(lbPinModesGPIO.ItemIndex));
 
+     if lbconfiguredPinsGPIO.Items.IndexOf(edtPinToConfigModeGPIO.Text) < 0 then
+       lbconfiguredPinsGPIO.Items.Add(edtPinToConfigModeGPIO.Text);
+
+     FslPinModes.Values[edtPinToConfigModeGPIO.Text] := IntToStr(lbPinModesGPIO.ItemIndex);
+
      log(m, params, 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, params, e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -265,7 +300,10 @@ begin
      log(m, 'void', 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, 'void', e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
@@ -304,6 +342,17 @@ begin
   end;
 end;
 
+procedure TfrmMain.edtPinToConfigModeGPIOChange(Sender: TObject);
+begin
+  lbPinPWMAlert.Visible := (edtPinToConfigModeGPIO.Text = '12') or
+    (edtPinToConfigModeGPIO.Text = '13') or
+    (edtPinToConfigModeGPIO.Text = '18') or
+    (edtPinToConfigModeGPIO.Text = '19') or
+    (edtPinToConfigModeGPIO.Text = '40') or
+    (edtPinToConfigModeGPIO.Text = '41') or
+    (edtPinToConfigModeGPIO.Text = '45');
+end;
+
 
 procedure TfrmMain.edtPinToRWGPIOChange(Sender: TObject);
 begin
@@ -324,6 +373,9 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 const
   ITEM = '%1:d - %0:s';
 begin
+  FslPinModes := TStringList.Create;
+  FslPullUpModes := TStringList.Create;
+
   lbPinModesGPIO.Items.Add(ITEM, ['RPIGPIO_INPUT', RPIGPIO_INPUT]);
   lbPinModesGPIO.Items.Add(ITEM, ['RPIGPIO_OUTPUT', RPIGPIO_OUTPUT]);
   lbPinModesGPIO.Items.Add(ITEM, ['RPIGPIO_PWM_OUTPUT', RPIGPIO_PWM_OUTPUT]);
@@ -344,6 +396,24 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FoI2cServiceMock.Free;
   FoGPIOServiceMock.Free;
+  FslPinModes.Free;
+  FslPullUpModes.Free;
+end;
+
+procedure TfrmMain.lbconfiguredPinsGPIOClick(Sender: TObject);
+begin
+  edtPinToConfigModeGPIO.Text :=
+    lbconfiguredPinsGPIO.Items.strings[lbconfiguredPinsGPIO.ItemIndex];
+
+  lbPinModesGPIO.ItemIndex := StrToIntDef(FslPinModes.Values[edtPinToConfigModeGPIO.Text], -1);
+  lbPinPullUpModesGPIO.ItemIndex := StrToIntDef(FslPullUpModes.Values[edtPinToConfigModeGPIO.Text], -1);
+
+end;
+
+procedure TfrmMain.lbconfiguredPinsGPIODblClick(Sender: TObject);
+begin
+  edtPinToRWGPIO.Text :=
+    lbconfiguredPinsGPIO.Items.strings[lbconfiguredPinsGPIO.ItemIndex];
 end;
 
 procedure TfrmMain.lbPinModesGPIOClick(Sender: TObject);
@@ -404,7 +474,10 @@ begin
      log(m, cbIsNewPIGPIO.Checked.ToString(), 'void');
   except
     on E:Exception do
+    begin
+       lbTryConfigGPIO.Visible := true;
        log(m, cbIsNewPIGPIO.Checked.ToString(), e.ClassName + ': ' + e.ToString);
+    end;
   end;
 end;
 
