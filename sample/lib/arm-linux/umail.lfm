@@ -1,0 +1,265 @@
+object frmMain: TfrmMain
+  Left = 478
+  Height = 711
+  Top = 40
+  Width = 601
+  Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
+  ClientHeight = 711
+  ClientWidth = 601
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.0.4'
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 24
+    Top = 687
+    Width = 601
+    Panels = <    
+      item
+        Width = 1000
+      end>
+    SimplePanel = False
+  end
+  object mmLog: TMemo
+    Left = 0
+    Height = 120
+    Top = 567
+    Width = 601
+    Align = alBottom
+    Lines.Strings = (
+      'log:'
+    )
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+  end
+  object ScrollBoxMain: TScrollBox
+    Left = 0
+    Height = 567
+    Top = 0
+    Width = 601
+    HorzScrollBar.Page = 586
+    VertScrollBar.Page = 552
+    Align = alClient
+    ClientHeight = 552
+    ClientWidth = 586
+    TabOrder = 2
+    object gbAbout: TGroupBox
+      Left = 0
+      Height = 78
+      Top = 0
+      Width = 674
+      Align = alTop
+      Caption = ' About '
+      ClientHeight = 55
+      ClientWidth = 672
+      TabOrder = 0
+      object lbAbout: TLabel
+        Left = 0
+        Height = 55
+        Top = 0
+        Width = 672
+        Align = alClient
+        Caption = 'This sample application has developed with Lazarus and Free Pascal to provide a simple GUI to test and show the classes of this repository.'
+        ParentColor = False
+        WordWrap = True
+      end
+    end
+    object PageControl: TPageControl
+      Left = 0
+      Height = 482
+      Top = 78
+      Width = 674
+      ActivePage = tsRpii2c
+      Align = alTop
+      TabIndex = 1
+      TabOrder = 1
+      object tsRpiio: TTabSheet
+        Caption = 'GPIO (rpiio)'
+      end
+      object tsRpii2c: TTabSheet
+        Caption = 'I2c (Rpii2c)'
+        ClientHeight = 434
+        ClientWidth = 664
+        object StaticText1: TStaticText
+          Left = 0
+          Height = 23
+          Top = 0
+          Width = 664
+          Align = alTop
+          Caption = '&Address:'
+          FocusControl = edtAddress
+          TabOrder = 0
+        end
+        object edtAddress: TEdit
+          Left = 0
+          Height = 32
+          Top = 23
+          Width = 664
+          Align = alTop
+          TabOrder = 1
+          Text = '1'
+        end
+        object gbOpenCloseI2c: TGroupBox
+          Left = 0
+          Height = 57
+          Top = 55
+          Width = 664
+          Align = alTop
+          ClientHeight = 55
+          ClientWidth = 662
+          TabOrder = 2
+          object btnOpenI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 16
+            Width = 75
+            Caption = '&Open'
+            OnClick = btnOpenI2cClick
+            TabOrder = 0
+          end
+          object btnCloseI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 16
+            Width = 75
+            Caption = '&Close'
+            OnClick = btnCloseI2cClick
+            TabOrder = 1
+          end
+          object lbTryConfigI2c: TLabel
+            Left = 192
+            Height = 22
+            Top = 16
+            Width = 312
+            Caption = 'Ty "sudo raspi-config" to enable the interface'
+            Color = clRed
+            Font.Color = clInactiveCaption
+            ParentColor = False
+            ParentFont = False
+            Transparent = False
+            Visible = False
+          end
+        end
+        object gbSetGetRegisterI2c: TGroupBox
+          Left = 0
+          Height = 182
+          Top = 112
+          Width = 664
+          Align = alTop
+          Caption = ' Register '
+          ClientHeight = 159
+          ClientWidth = 662
+          TabOrder = 3
+          object btnSetRegisterI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 122
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Set'
+            OnClick = btnSetRegisterI2cClick
+            TabOrder = 0
+          end
+          object btnGetRegisterI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 124
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Get'
+            OnClick = btnGetRegisterI2cClick
+            TabOrder = 1
+          end
+          object StaticText2: TStaticText
+            Left = 0
+            Height = 23
+            Top = 0
+            Width = 662
+            Align = alTop
+            Caption = 'R&egister:'
+            FocusControl = edtRegister
+            TabOrder = 2
+          end
+          object edtRegister: TEdit
+            Left = 0
+            Height = 32
+            Top = 23
+            Width = 662
+            Align = alTop
+            TabOrder = 3
+            Text = '1'
+          end
+          object StaticText3: TStaticText
+            Left = 0
+            Height = 23
+            Top = 55
+            Width = 662
+            Align = alTop
+            Caption = '&Value:'
+            FocusControl = edtValueRegister
+            TabOrder = 4
+          end
+          object edtValueRegister: TEdit
+            Left = 0
+            Height = 32
+            Top = 78
+            Width = 662
+            Align = alTop
+            TabOrder = 5
+            Text = '$00'
+          end
+        end
+        object gbWriteReadBytesI2c: TGroupBox
+          Left = 0
+          Height = 140
+          Top = 294
+          Width = 664
+          Align = alTop
+          Caption = ' Communication '
+          ClientHeight = 117
+          ClientWidth = 662
+          TabOrder = 4
+          object btnWriteBytesI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 80
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Write'
+            OnClick = btnWriteBytesI2cClick
+            TabOrder = 0
+          end
+          object btnReadByteI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 82
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Read'
+            OnClick = btnReadByteI2cClick
+            TabOrder = 1
+          end
+          object StaticText4: TStaticText
+            Left = 0
+            Height = 26
+            Top = 0
+            Width = 662
+            Align = alTop
+            Caption = '&Byte(s):        (delimited by spaces or commas for write more than one byte)'
+            FocusControl = edtBytes
+            TabOrder = 2
+          end
+          object edtBytes: TEdit
+            Left = 0
+            Height = 32
+            Top = 26
+            Width = 662
+            Align = alTop
+            TabOrder = 3
+            Text = '$01'
+          end
+        end
+      end
+    end
+  end
+end

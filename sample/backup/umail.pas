@@ -22,7 +22,6 @@ type
     btnInitGPIO: TButton;
     btnReadByteI2c: TButton;
     btnOpenI2c: TButton;
-    btnCloseI2c: TButton;
     btnSetRegisterI2c: TButton;
     btnWriteBytesI2c: TButton;
     btnSetPinGPIO: TButton;
@@ -50,6 +49,7 @@ type
     mmLog: TMemo;
     PageControl: TPageControl;
     pnModesGPIO: TPanel;
+    ScrollBoxMain: TScrollBox;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
     StaticText3: TStaticText;
@@ -57,6 +57,7 @@ type
     StaticText5: TStaticText;
     StaticText6: TStaticText;
     StaticText7: TStaticText;
+    lbTryConfigI2c: TStaticText;
     StatusBar: TStatusBar;
     tsRpii2c: TTabSheet;
     tsRpiio: TTabSheet;
@@ -85,7 +86,7 @@ type
 
     FoI2cService: trpiI2CDeviceAbstract;
     FoGPIOService: TrpiGPIOAbstract;
-    procedure log(const method, parameters, returned: string);
+    procedure log(const method, parameters, returned: string; const comment: string = '');
   public
     procedure DefineService(const I2cService: trpiI2CDeviceAbstract;
     const poGPIOService: TrpiGPIOAbstract);
@@ -141,11 +142,18 @@ const
   m = 'openDevice';
 begin
   try
+    lbTryConfigI2c.Visible := false;
      FoI2cService.openDevice(StrToInt(edtAddress.Text));
      log(m, edtAddress.Text, 'void');
   except
     on E:Exception do
-       log(m, edtAddress.Text, e.ClassName + ': ' + e.ToString);
+    begin
+      lbTryConfigI2c.Visible := true;
+       log(m, edtAddress.Text, e.ClassName + ': ' + e.ToString,
+         'Refer to https://www.raspberrypi-spy.co.uk/2014/11/' +
+         'enabling-the-i2c-interface-on-the-raspberry-pi/ or another refs ' +
+         'to enable I2C');
+    end;
   end;
 end;
 
@@ -267,13 +275,14 @@ var
   bytes: array[0..255] of Byte;
   i: integer;
   len: longint;
-  m: string;
+  m, s: string;
 begin
   sl := TStringList.Create;
   try
      m := 'writeByte';
      try
-       sl.CommaText := edtBytes.Text;
+       s := StringReplace(edtBytes.Text, ' ', ',', [Rfreplaceall]);
+       sl.CommaText := s;
        if sl.Count = 1 then
          FoI2cService.writeByte(Byte(sl[0].ToInteger))
        else
@@ -347,14 +356,17 @@ begin
   btnSetPullUpMode.Enabled := lbPinPullUpModesGPIO.ItemIndex >= 0;
 end;
 
-procedure TfrmMain.log(const method, parameters, returned: string);
+procedure TfrmMain.log(const method, parameters, returned: string; const comment: string);
 var
   line: string;
 begin
   line := Format('[%s - %s] Parameters: [%s], returned: [%s]',
-    [DateToStr(Now), method, parameters, returned]);
+    [DateTimeToStr(Now), method, parameters, returned]);
   StatusBar.Panels[0].Text := line;
-  mmLog.Lines.add(line);
+  mmLog.Lines.Insert(0, line);
+  if comment <> EmptyStr then
+    mmLog.Lines.Insert(1, line);
+
 end;
 
 procedure TfrmMain.btnCloseI2cClick(Sender: TObject);

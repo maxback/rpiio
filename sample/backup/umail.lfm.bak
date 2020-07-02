@@ -1,452 +1,454 @@
 object frmMain: TfrmMain
-  Left = 524
-  Height = 653
-  Top = 7
-  Width = 525
+  Left = 478
+  Height = 711
+  Top = 40
+  Width = 601
   Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
-  ClientHeight = 653
-  ClientWidth = 525
+  ClientHeight = 711
+  ClientWidth = 601
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.0.4'
-  object gbAbout: TGroupBox
+  object ScrollBoxMain: TScrollBox
     Left = 0
-    Height = 63
+    Height = 538
     Top = 0
-    Width = 525
-    Align = alTop
-    Caption = ' About '
-    ClientHeight = 43
-    ClientWidth = 521
+    Width = 601
+    HorzScrollBar.Page = 443
+    VertScrollBar.Page = 524
+    Align = alClient
+    ClientHeight = 534
+    ClientWidth = 597
     TabOrder = 0
-    object lbAbout: TLabel
+    object PageControl: TPageControl
       Left = 0
-      Height = 43
+      Height = 524
       Top = 0
-      Width = 521
-      Align = alClient
-      Caption = 'This sample application has developed with Lazarus and Free Pascal to provide a simple GUI to test and show the classes of this repository.'
-      ParentColor = False
-      WordWrap = True
-    end
-  end
-  object PageControl: TPageControl
-    Left = 0
-    Height = 417
-    Top = 63
-    Width = 525
-    ActivePage = tsRpiio
-    Align = alTop
-    TabIndex = 0
-    TabOrder = 1
-    object tsRpiio: TTabSheet
-      Caption = 'GPIO (rpiio)'
-      ClientHeight = 389
-      ClientWidth = 517
-      object gbInitShutdownGPIO: TGroupBox
-        Left = 0
-        Height = 64
-        Top = 0
-        Width = 517
-        Align = alTop
-        ClientHeight = 44
-        ClientWidth = 513
-        TabOrder = 0
-        object btnInitGPIO: TButton
-          Left = 288
-          Height = 25
-          Top = 8
-          Width = 75
-          Caption = '&Initialise'
-          OnClick = btnInitGPIOClick
-          TabOrder = 0
-        end
-        object btnShutdownGPIO: TButton
-          Left = 382
-          Height = 25
-          Top = 8
-          Width = 75
-          Caption = '&Shutdown'
-          OnClick = btnShutdownGPIOClick
-          TabOrder = 1
-        end
-        object cbIsNewPIGPIO: TCheckBox
-          Left = 10
-          Height = 19
-          Top = 10
-          Width = 231
-          Caption = 'Is New PI (True to <newPi> for Pi 2 or 3)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-      end
-      object gbPinModeGPIO: TGroupBox
-        Left = 0
-        Height = 176
-        Top = 64
-        Width = 517
-        Align = alTop
-        Caption = ' Pin Mode '
-        ClientHeight = 156
-        ClientWidth = 513
-        TabOrder = 1
-        object StaticText5: TStaticText
+      Width = 597
+      ActivePage = tsRpii2c
+      Align = alTop
+      TabIndex = 1
+      TabOrder = 0
+      object tsRpiio: TTabSheet
+        Caption = 'GPIO (rpiio)'
+        ClientHeight = 496
+        ClientWidth = 589
+        object gbInitShutdownGPIO: TGroupBox
           Left = 0
-          Height = 17
+          Height = 64
           Top = 0
-          Width = 513
+          Width = 589
           Align = alTop
-          Caption = '&Pin:'
-          FocusControl = edtPinToConfigModeGPIO
+          ClientHeight = 44
+          ClientWidth = 585
           TabOrder = 0
-        end
-        object edtPinToConfigModeGPIO: TEdit
-          Left = 0
-          Height = 23
-          Top = 17
-          Width = 513
-          Align = alTop
-          TabOrder = 1
-          Text = '1'
-        end
-        object pnModesGPIO: TPanel
-          Left = 0
-          Height = 116
-          Top = 40
-          Width = 513
-          Align = alClient
-          ClientHeight = 116
-          ClientWidth = 513
-          TabOrder = 2
-          object GroupBox1: TGroupBox
-            Left = 1
-            Height = 114
-            Top = 1
-            Width = 255
-            Align = alLeft
-            Caption = ' Mode '
-            ClientHeight = 94
-            ClientWidth = 251
+          object btnInitGPIO: TButton
+            Left = 288
+            Height = 25
+            Top = 8
+            Width = 75
+            Caption = '&Initialise'
+            OnClick = btnInitGPIOClick
             TabOrder = 0
-            object btnSetPinMode: TButton
-              Left = 0
-              Height = 25
-              Top = 69
-              Width = 251
-              Align = alBottom
-              Anchors = [akLeft, akBottom]
-              Caption = 'S&et Pin Mode'
-              Enabled = False
-              OnClick = btnSetPinModeClick
-              TabOrder = 0
-            end
-            object lbPinModesGPIO: TListBox
-              Left = 0
-              Height = 69
-              Top = 0
-              Width = 251
-              Align = alClient
-              ItemHeight = 0
-              OnClick = lbPinModesGPIOClick
-              TabOrder = 1
-            end
           end
-          object GroupBox2: TGroupBox
-            Left = 256
-            Height = 114
-            Top = 1
-            Width = 255
-            Align = alLeft
-            Caption = ' PullUp Mode '
-            ClientHeight = 94
-            ClientWidth = 251
+          object btnShutdownGPIO: TButton
+            Left = 382
+            Height = 25
+            Top = 8
+            Width = 75
+            Caption = '&Shutdown'
+            OnClick = btnShutdownGPIOClick
             TabOrder = 1
-            object lbPinPullUpModesGPIO: TListBox
-              Left = 0
-              Height = 69
-              Top = 0
-              Width = 251
-              Align = alClient
-              ItemHeight = 0
-              OnClick = lbPinPullUpModesGPIOClick
+          end
+          object cbIsNewPIGPIO: TCheckBox
+            Left = 10
+            Height = 19
+            Top = 10
+            Width = 231
+            Caption = 'Is New PI (True to <newPi> for Pi 2 or 3)'
+            Checked = True
+            State = cbChecked
+            TabOrder = 2
+          end
+        end
+        object gbPinModeGPIO: TGroupBox
+          Left = 0
+          Height = 176
+          Top = 64
+          Width = 589
+          Align = alTop
+          Caption = ' Pin Mode '
+          ClientHeight = 156
+          ClientWidth = 585
+          TabOrder = 1
+          object StaticText5: TStaticText
+            Left = 0
+            Height = 17
+            Top = 0
+            Width = 585
+            Align = alTop
+            Caption = '&Pin:'
+            FocusControl = edtPinToConfigModeGPIO
+            TabOrder = 0
+          end
+          object edtPinToConfigModeGPIO: TEdit
+            Left = 0
+            Height = 23
+            Top = 17
+            Width = 585
+            Align = alTop
+            TabOrder = 1
+            Text = '1'
+          end
+          object pnModesGPIO: TPanel
+            Left = 0
+            Height = 116
+            Top = 40
+            Width = 585
+            Align = alClient
+            ClientHeight = 116
+            ClientWidth = 585
+            TabOrder = 2
+            object GroupBox1: TGroupBox
+              Left = 1
+              Height = 114
+              Top = 1
+              Width = 255
+              Align = alLeft
+              Caption = ' Mode '
+              ClientHeight = 94
+              ClientWidth = 251
               TabOrder = 0
+              object btnSetPinMode: TButton
+                Left = 0
+                Height = 25
+                Top = 69
+                Width = 251
+                Align = alBottom
+                Caption = 'S&et Pin Mode'
+                Enabled = False
+                OnClick = btnSetPinModeClick
+                TabOrder = 0
+              end
+              object lbPinModesGPIO: TListBox
+                Left = 0
+                Height = 69
+                Top = 0
+                Width = 251
+                Align = alClient
+                ItemHeight = 0
+                OnClick = lbPinModesGPIOClick
+                TabOrder = 1
+              end
             end
-            object btnSetPullUpMode: TButton
-              Left = 0
-              Height = 25
-              Top = 69
-              Width = 251
-              Align = alBottom
-              Anchors = [akLeft, akBottom]
-              Caption = 'Set P&ullUp Mode'
-              Enabled = False
-              OnClick = btnSetPullUpModeClick
+            object GroupBox2: TGroupBox
+              Left = 256
+              Height = 114
+              Top = 1
+              Width = 255
+              Align = alLeft
+              Caption = ' PullUp Mode '
+              ClientHeight = 94
+              ClientWidth = 251
               TabOrder = 1
+              object lbPinPullUpModesGPIO: TListBox
+                Left = 0
+                Height = 69
+                Top = 0
+                Width = 251
+                Align = alClient
+                ItemHeight = 0
+                OnClick = lbPinPullUpModesGPIOClick
+                TabOrder = 0
+              end
+              object btnSetPullUpMode: TButton
+                Left = 0
+                Height = 25
+                Top = 69
+                Width = 251
+                Align = alBottom
+                Caption = 'Set P&ullUp Mode'
+                Enabled = False
+                OnClick = btnSetPullUpModeClick
+                TabOrder = 1
+              end
             end
           end
         end
-      end
-      object gbReadWriteGPIO: TGroupBox
-        Left = 0
-        Height = 145
-        Top = 240
-        Width = 517
-        Align = alTop
-        Caption = ' Read/Write '
-        ClientHeight = 125
-        ClientWidth = 513
-        TabOrder = 2
-        object btnSetPinGPIO: TButton
-          Left = 72
-          Height = 25
-          Top = 88
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&1 - Set'
-          OnClick = btnSetPinGPIOClick
-          TabOrder = 0
-        end
-        object btnReadPinGPIO: TButton
-          Left = 248
-          Height = 25
-          Top = 88
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&Read'
-          OnClick = btnReadPinGPIOClick
-          TabOrder = 1
-        end
-        object StaticText6: TStaticText
+        object gbReadWriteGPIO: TGroupBox
           Left = 0
-          Height = 17
-          Top = 0
-          Width = 513
+          Height = 145
+          Top = 240
+          Width = 589
           Align = alTop
-          Caption = 'P&in:'
-          FocusControl = edtPinToRWGPIO
+          Caption = ' Read/Write '
+          ClientHeight = 125
+          ClientWidth = 585
           TabOrder = 2
+          object btnSetPinGPIO: TButton
+            Left = 72
+            Height = 25
+            Top = 88
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&1 - Set'
+            OnClick = btnSetPinGPIOClick
+            TabOrder = 0
+          end
+          object btnReadPinGPIO: TButton
+            Left = 248
+            Height = 25
+            Top = 88
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Read'
+            OnClick = btnReadPinGPIOClick
+            TabOrder = 1
+          end
+          object StaticText6: TStaticText
+            Left = 0
+            Height = 17
+            Top = 0
+            Width = 585
+            Align = alTop
+            Caption = 'P&in:'
+            FocusControl = edtPinToRWGPIO
+            TabOrder = 2
+          end
+          object edtPinToRWGPIO: TEdit
+            Left = 0
+            Height = 23
+            Top = 17
+            Width = 585
+            Align = alTop
+            OnChange = edtPinToRWGPIOChange
+            TabOrder = 3
+            Text = '1'
+          end
+          object StaticText7: TStaticText
+            Left = 0
+            Height = 17
+            Top = 40
+            Width = 585
+            Align = alTop
+            Caption = '&Value Read or for Write PWM:'
+            FocusControl = edtValuePWMGPIO
+            TabOrder = 4
+          end
+          object edtValuePWMGPIO: TEdit
+            Left = 0
+            Height = 23
+            Top = 57
+            Width = 585
+            Align = alTop
+            TabOrder = 5
+            Text = '1'
+          end
+          object btnPWMWritePinGPIO: TButton
+            Left = 152
+            Height = 25
+            Top = 88
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = 'P&WM Write'
+            Enabled = False
+            OnClick = btnPWMWritePinGPIOClick
+            TabOrder = 6
+          end
+          object btnClearPinGPIO1: TButton
+            Left = 0
+            Height = 25
+            Top = 88
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&0 - Clear'
+            OnClick = btnClearPinGPIO1Click
+            TabOrder = 7
+          end
         end
-        object edtPinToRWGPIO: TEdit
+      end
+      object tsRpii2c: TTabSheet
+        Caption = 'I2c (Rpii2c)'
+        ClientHeight = 496
+        ClientWidth = 589
+        object StaticText1: TStaticText
           Left = 0
           Height = 23
-          Top = 17
-          Width = 513
+          Top = 0
+          Width = 589
           Align = alTop
-          OnChange = edtPinToRWGPIOChange
-          TabOrder = 3
+          Caption = '&Address:'
+          FocusControl = edtAddress
+          TabOrder = 0
+        end
+        object edtAddress: TEdit
+          Left = 0
+          Height = 23
+          Top = 23
+          Width = 589
+          Align = alTop
+          TabOrder = 1
           Text = '1'
         end
-        object StaticText7: TStaticText
+        object gbOpenCloseI2c: TGroupBox
           Left = 0
-          Height = 17
-          Top = 40
-          Width = 513
+          Height = 71
+          Top = 46
+          Width = 589
           Align = alTop
-          Caption = '&Value Read or for Write PWM:'
-          FocusControl = edtValuePWMGPIO
+          ClientHeight = 51
+          ClientWidth = 585
+          TabOrder = 2
+          object btnOpenI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 16
+            Width = 75
+            Caption = '&Open'
+            OnClick = btnOpenI2cClick
+            TabOrder = 0
+          end
+          object btnCloseI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 16
+            Width = 75
+            Caption = '&Close'
+            OnClick = btnCloseI2cClick
+            TabOrder = 1
+          end
+          object lbTryConfigI2c: TLabel
+            Left = 192
+            Height = 15
+            Top = 16
+            Width = 239
+            Caption = 'Ty "sudo raspi-config" to enable the interface'
+            Color = clRed
+            Font.Color = clInactiveCaption
+            ParentColor = False
+            ParentFont = False
+            Transparent = False
+            Visible = False
+          end
+        end
+        object gbSetGetRegisterI2c: TGroupBox
+          Left = 0
+          Height = 182
+          Top = 117
+          Width = 589
+          Align = alTop
+          Caption = ' Register '
+          ClientHeight = 162
+          ClientWidth = 585
+          TabOrder = 3
+          object btnSetRegisterI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 125
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Set'
+            OnClick = btnSetRegisterI2cClick
+            TabOrder = 0
+          end
+          object btnGetRegisterI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 127
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Get'
+            OnClick = btnGetRegisterI2cClick
+            TabOrder = 1
+          end
+          object StaticText2: TStaticText
+            Left = 0
+            Height = 23
+            Top = 0
+            Width = 585
+            Align = alTop
+            Caption = 'R&egister:'
+            FocusControl = edtRegister
+            TabOrder = 2
+          end
+          object edtRegister: TEdit
+            Left = 0
+            Height = 23
+            Top = 23
+            Width = 585
+            Align = alTop
+            TabOrder = 3
+            Text = '1'
+          end
+          object StaticText3: TStaticText
+            Left = 0
+            Height = 23
+            Top = 46
+            Width = 585
+            Align = alTop
+            Caption = '&Value:'
+            FocusControl = edtValueRegister
+            TabOrder = 4
+          end
+          object edtValueRegister: TEdit
+            Left = 0
+            Height = 23
+            Top = 69
+            Width = 585
+            Align = alTop
+            TabOrder = 5
+            Text = '$00'
+          end
+        end
+        object gbWriteReadBytesI2c: TGroupBox
+          Left = 0
+          Height = 140
+          Top = 299
+          Width = 589
+          Align = alTop
+          Caption = ' Communication '
+          ClientHeight = 120
+          ClientWidth = 585
           TabOrder = 4
-        end
-        object edtValuePWMGPIO: TEdit
-          Left = 0
-          Height = 23
-          Top = 57
-          Width = 513
-          Align = alTop
-          TabOrder = 5
-          Text = '1'
-        end
-        object btnPWMWritePinGPIO: TButton
-          Left = 152
-          Height = 25
-          Top = 88
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = 'P&WM Write'
-          Enabled = False
-          OnClick = btnPWMWritePinGPIOClick
-          TabOrder = 6
-        end
-        object btnClearPinGPIO1: TButton
-          Left = 0
-          Height = 25
-          Top = 88
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&0 - Clear'
-          OnClick = btnClearPinGPIO1Click
-          TabOrder = 7
-        end
-      end
-    end
-    object tsRpii2c: TTabSheet
-      Caption = 'I2c (Rpii2c)'
-      ClientHeight = 389
-      ClientWidth = 517
-      object StaticText1: TStaticText
-        Left = 0
-        Height = 17
-        Top = 0
-        Width = 517
-        Align = alTop
-        Caption = '&Address:'
-        FocusControl = edtAddress
-        TabOrder = 0
-      end
-      object edtAddress: TEdit
-        Left = 0
-        Height = 23
-        Top = 17
-        Width = 517
-        Align = alTop
-        TabOrder = 1
-        Text = '1'
-      end
-      object gbOpenCloseI2c: TGroupBox
-        Left = 0
-        Height = 57
-        Top = 40
-        Width = 517
-        Align = alTop
-        ClientHeight = 37
-        ClientWidth = 513
-        TabOrder = 2
-        object btnOpenI2c: TButton
-          Left = 8
-          Height = 25
-          Top = 0
-          Width = 75
-          Caption = '&Open'
-          OnClick = btnOpenI2cClick
-          TabOrder = 0
-        end
-        object btnCloseI2c: TButton
-          Left = 102
-          Height = 25
-          Top = 0
-          Width = 75
-          Caption = '&Close'
-          OnClick = btnCloseI2cClick
-          TabOrder = 1
-        end
-      end
-      object gbSetGetRegisterI2c: TGroupBox
-        Left = 0
-        Height = 144
-        Top = 97
-        Width = 517
-        Align = alTop
-        Caption = ' Register '
-        ClientHeight = 124
-        ClientWidth = 513
-        TabOrder = 3
-        object btnSetRegisterI2c: TButton
-          Left = 8
-          Height = 25
-          Top = 87
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&Set'
-          OnClick = btnSetRegisterI2cClick
-          TabOrder = 0
-        end
-        object btnGetRegisterI2c: TButton
-          Left = 102
-          Height = 25
-          Top = 89
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&Get'
-          OnClick = btnGetRegisterI2cClick
-          TabOrder = 1
-        end
-        object StaticText2: TStaticText
-          Left = 0
-          Height = 17
-          Top = 0
-          Width = 513
-          Align = alTop
-          Caption = 'R&egister:'
-          FocusControl = edtRegister
-          TabOrder = 2
-        end
-        object edtRegister: TEdit
-          Left = 0
-          Height = 23
-          Top = 17
-          Width = 513
-          Align = alTop
-          TabOrder = 3
-          Text = '1'
-        end
-        object StaticText3: TStaticText
-          Left = 0
-          Height = 17
-          Top = 40
-          Width = 513
-          Align = alTop
-          Caption = '&Value:'
-          FocusControl = edtValueRegister
-          TabOrder = 4
-        end
-        object edtValueRegister: TEdit
-          Left = 0
-          Height = 23
-          Top = 57
-          Width = 513
-          Align = alTop
-          TabOrder = 5
-          Text = '$00'
-        end
-      end
-      object gbWriteReadBytesI2c: TGroupBox
-        Left = 0
-        Height = 104
-        Top = 241
-        Width = 517
-        Align = alTop
-        Caption = ' Communication '
-        ClientHeight = 84
-        ClientWidth = 513
-        TabOrder = 4
-        object btnWriteBytesI2c: TButton
-          Left = 8
-          Height = 25
-          Top = 47
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&Write'
-          OnClick = btnWriteBytesI2cClick
-          TabOrder = 0
-        end
-        object btnReadByteI2c: TButton
-          Left = 102
-          Height = 25
-          Top = 49
-          Width = 75
-          Anchors = [akLeft, akBottom]
-          Caption = '&Read'
-          OnClick = btnReadByteI2cClick
-          TabOrder = 1
-        end
-        object StaticText4: TStaticText
-          Left = 0
-          Height = 17
-          Top = 0
-          Width = 513
-          Align = alTop
-          Caption = '&Byte(s):                                                  (delimited by , for write more then one byte) '
-          FocusControl = edtBytes
-          TabOrder = 2
-        end
-        object edtBytes: TEdit
-          Left = 0
-          Height = 23
-          Top = 17
-          Width = 513
-          Align = alTop
-          TabOrder = 3
-          Text = '$01'
+          object btnWriteBytesI2c: TButton
+            Left = 8
+            Height = 25
+            Top = 83
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Write'
+            OnClick = btnWriteBytesI2cClick
+            TabOrder = 0
+          end
+          object btnReadByteI2c: TButton
+            Left = 102
+            Height = 25
+            Top = 85
+            Width = 75
+            Anchors = [akLeft, akBottom]
+            Caption = '&Read'
+            OnClick = btnReadByteI2cClick
+            TabOrder = 1
+          end
+          object StaticText4: TStaticText
+            Left = 0
+            Height = 26
+            Top = 0
+            Width = 585
+            Align = alTop
+            Caption = '&Byte(s):        (delimited by spaces or commas for write more than one byte)'
+            FocusControl = edtBytes
+            TabOrder = 2
+          end
+          object edtBytes: TEdit
+            Left = 0
+            Height = 23
+            Top = 26
+            Width = 585
+            Align = alTop
+            TabOrder = 3
+            Text = '$01'
+          end
         end
       end
     end
@@ -454,8 +456,8 @@ object frmMain: TfrmMain
   object StatusBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 630
-    Width = 525
+    Top = 688
+    Width = 601
     Panels = <    
       item
         Width = 1000
@@ -465,13 +467,13 @@ object frmMain: TfrmMain
   object mmLog: TMemo
     Left = 0
     Height = 150
-    Top = 480
-    Width = 525
-    Align = alClient
+    Top = 538
+    Width = 601
+    Align = alBottom
     Lines.Strings = (
       'log:'
     )
     ScrollBars = ssAutoBoth
-    TabOrder = 3
+    TabOrder = 2
   end
 end

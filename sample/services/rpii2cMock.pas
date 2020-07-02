@@ -3,9 +3,15 @@ unit rpii2cMock;
 interface
 
 uses
+  {$IFDEF UNIX}
+    baseunix,
+  {$ENDIF}
   sysutils, classes, rpii2cAPI;
 
 type
+  {$IFNDEF UNIX}
+
+  {$ENDIF}
 
   { trpiI2CDevice }
 
