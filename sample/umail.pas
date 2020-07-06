@@ -27,7 +27,9 @@ type
     btnWriteBytesI2c: TButton;
     btnSetPinGPIO: TButton;
     btnPWMWritePinGPIO: TButton;
+    btnWriteStringI2c: TButton;
     cbIsNewPIGPIO: TCheckBox;
+    cbAutoReadI2c: TCheckBox;
     edtAddress: TEdit;
     edtPinToRWGPIO: TEdit;
     edtValuePWMGPIO: TEdit;
@@ -50,6 +52,7 @@ type
     lbPinModesGPIO: TListBox;
     lbPinPullUpModesGPIO: TListBox;
     lbTryConfigGPIO: TLabel;
+    mmReadI2c: TMemo;
     mmLog: TMemo;
     PageControl: TPageControl;
         pnModesGPIO: TPanel;
@@ -63,6 +66,7 @@ type
     StaticText7: TStaticText;
     lbTryConfigI2c: TStaticText;
     StatusBar: TStatusBar;
+    TimerautoI2c: TTimer;
     tsRpii2c: TTabSheet;
     tsRpiio: TTabSheet;
     procedure btnClearPinGPIO1Click(Sender: TObject);
@@ -79,6 +83,8 @@ type
     procedure btnSetRegisterI2cClick(Sender: TObject);
     procedure btnShutdownGPIOClick(Sender: TObject);
     procedure btnWriteBytesI2cClick(Sender: TObject);
+    procedure btnWriteStringI2cClick(Sender: TObject);
+    procedure cbAutoReadI2cClick(Sender: TObject);
     procedure edtPinToConfigModeGPIOChange(Sender: TObject);
     procedure edtPinToRWGPIOChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -87,6 +93,7 @@ type
     procedure lbconfiguredPinsGPIODblClick(Sender: TObject);
     procedure lbPinModesGPIOClick(Sender: TObject);
     procedure lbPinPullUpModesGPIOClick(Sender: TObject);
+    procedure TimerautoI2cTimer(Sender: TObject);
   private
     FslPinModes: TStringList;
     FslPullUpModes: TStringList;
@@ -95,6 +102,7 @@ type
 
     FoI2cService: trpiI2CDeviceAbstract;
     FoGPIOService: TrpiGPIOAbstract;
+    procedure GetReponseI2c;
     procedure log(const method, parameters, returned: string; const comment: string = '');
   public
     procedure DefineService(const I2cService: trpiI2CDeviceAbstract;
@@ -160,10 +168,13 @@ end;
 procedure TfrmMain.btnOpenI2cClick(Sender: TObject);
 const
   m = 'openDevice';
+var
+  addr: byte;
 begin
   try
     lbTryConfigI2c.Visible := false;
-     FoI2cService.openDevice(StrToInt(edtAddress.Text));
+    addr := byte(StrToInt(edtAddress.Text));
+     FoI2cService.openDevice(addr);
      log(m, edtAddress.Text, 'void');
   except
     on E:Exception do
@@ -333,6 +344,7 @@ begin
          FoI2cService.writeBytes(@bytes, len);
        end;
        log(m, edtBytes.Text, 'void');
+       TimerautoI2c.Enabled := cbAutoReadI2c.Checked;
     except
       on E:Exception do
          log(m, edtBytes.Text, e.ClassName + ': ' + e.ToString);
@@ -340,6 +352,29 @@ begin
   finally
     sl.Free;
   end;
+end;
+
+procedure TfrmMain.btnWriteStringI2cClick(Sender: TObject);
+const
+  m = 'writeBytes';
+var
+  s: string;
+begin
+ try
+   s := edtBytes.Text;
+   FoI2cService.writeBytes(@s[1], Length(s));
+   log(m, s, 'void');
+   sleep(2000);
+   GetReponseI2c;
+   TimerautoI2c.Enabled := cbAutoReadI2c.Checked;
+  except
+  on E:Exception do
+     log(m, edtBytes.Text, e.ClassName + ': ' + e.ToString);
+  end;
+end;
+
+procedure TfrmMain.cbAutoReadI2cClick(Sender: TObject);
+begin
 end;
 
 procedure TfrmMain.edtPinToConfigModeGPIOChange(Sender: TObject);
@@ -424,6 +459,35 @@ end;
 procedure TfrmMain.lbPinPullUpModesGPIOClick(Sender: TObject);
 begin
   btnSetPullUpMode.Enabled := lbPinPullUpModesGPIO.ItemIndex >= 0;
+end;
+
+
+procedure TfrmMain.GetReponseI2c;
+var
+  buff: array[0..30] of byte;
+  read: longint;
+  i: integer;
+  sread: string;
+begin
+  read := FoI2cService.readBytes(@buff[0], 30);
+  sread := EmptyStr;
+  if read > 0 then
+  begin
+    for i := 0 to read-1 do
+    begin
+      sread := sread + ' #'+IntToStr(buff[i]);
+      mmReadI2c.Lines.text := mmReadI2c.Lines.text +
+        Char(buff[i]);
+    end;
+  end;
+  log('read.Bytes', 'buff, 30', IntToStr(read) + ' -> ' + sread);
+end;
+
+
+procedure TfrmMain.TimerautoI2cTimer(Sender: TObject);
+begin
+  GetReponseI2c;
+  TimerautoI2c.Enabled := cbAutoReadI2c.Checked;
 end;
 
 procedure TfrmMain.log(const method, parameters, returned: string; const comment: string);

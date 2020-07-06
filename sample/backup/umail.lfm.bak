@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 604
-  Height = 711
-  Top = 89
-  Width = 674
+  Left = 489
+  Height = 702
+  Top = 196
+  Width = 724
   Caption = 'Freepascal Raspberry Pi IO library - Sample Application'
-  ClientHeight = 711
-  ClientWidth = 674
+  ClientHeight = 702
+  ClientWidth = 724
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.0.4'
@@ -13,33 +13,33 @@ object frmMain: TfrmMain
     Left = 0
     Height = 542
     Top = 0
-    Width = 674
-    HorzScrollBar.Page = 624
+    Width = 724
+    HorzScrollBar.Page = 701
     VertScrollBar.Page = 536
     Align = alClient
     ClientHeight = 540
-    ClientWidth = 672
+    ClientWidth = 722
     TabOrder = 0
     object PageControl: TPageControl
       Left = 0
       Height = 536
       Top = 0
-      Width = 672
-      ActivePage = tsRpiio
+      Width = 722
+      ActivePage = tsRpii2c
       Align = alTop
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       object tsRpiio: TTabSheet
         Caption = 'GPIO (rpiio)'
         ClientHeight = 488
-        ClientWidth = 662
+        ClientWidth = 712
         object gbInitShutdownGPIO: TGroupBox
           Left = 0
           Height = 74
           Top = 0
           Width = 662
           Align = alTop
-          ClientHeight = 72
+          ClientHeight = 51
           ClientWidth = 660
           TabOrder = 0
           object btnInitGPIO: TButton
@@ -123,8 +123,8 @@ object frmMain: TfrmMain
             Top = 55
             Width = 660
             Align = alClient
-            ClientHeight = 148
-            ClientWidth = 660
+            ClientHeight = 144
+            ClientWidth = 656
             TabOrder = 2
             object GroupBox1: TGroupBox
               Left = 1
@@ -155,7 +155,7 @@ object frmMain: TfrmMain
                 Align = alClient
                 ItemHeight = 0
                 OnClick = lbPinModesGPIOClick
-                ScrollWidth = 251
+                ScrollWidth = 249
                 TabOrder = 1
                 TopIndex = -1
               end
@@ -178,7 +178,7 @@ object frmMain: TfrmMain
                 Align = alClient
                 ItemHeight = 0
                 OnClick = lbPinPullUpModesGPIOClick
-                ScrollWidth = 251
+                ScrollWidth = 249
                 TabOrder = 0
                 TopIndex = -1
               end
@@ -203,7 +203,7 @@ object frmMain: TfrmMain
               ItemHeight = 0
               OnClick = lbconfiguredPinsGPIOClick
               OnDblClick = lbconfiguredPinsGPIODblClick
-              ScrollWidth = 146
+              ScrollWidth = 144
               TabOrder = 2
               TopIndex = -1
             end
@@ -316,12 +316,12 @@ object frmMain: TfrmMain
       object tsRpii2c: TTabSheet
         Caption = 'I2c (Rpii2c)'
         ClientHeight = 488
-        ClientWidth = 662
+        ClientWidth = 712
         object StaticText1: TStaticText
           Left = 0
           Height = 23
           Top = 0
-          Width = 589
+          Width = 712
           Align = alTop
           Caption = '&Address:'
           FocusControl = edtAddress
@@ -331,19 +331,19 @@ object frmMain: TfrmMain
           Left = 0
           Height = 32
           Top = 23
-          Width = 589
+          Width = 712
           Align = alTop
           TabOrder = 1
-          Text = '1'
+          Text = '$8'
         end
         object gbOpenCloseI2c: TGroupBox
           Left = 0
           Height = 71
           Top = 55
-          Width = 589
+          Width = 712
           Align = alTop
-          ClientHeight = 48
-          ClientWidth = 587
+          ClientHeight = 69
+          ClientWidth = 710
           TabOrder = 2
           object btnOpenI2c: TButton
             Left = 8
@@ -384,11 +384,11 @@ object frmMain: TfrmMain
           Left = 0
           Height = 182
           Top = 126
-          Width = 589
+          Width = 712
           Align = alTop
           Caption = ' Register '
           ClientHeight = 159
-          ClientWidth = 587
+          ClientWidth = 710
           TabOrder = 3
           object btnSetRegisterI2c: TButton
             Left = 8
@@ -414,7 +414,7 @@ object frmMain: TfrmMain
             Left = 0
             Height = 23
             Top = 0
-            Width = 587
+            Width = 710
             Align = alTop
             Caption = 'R&egister:'
             FocusControl = edtRegister
@@ -424,7 +424,7 @@ object frmMain: TfrmMain
             Left = 0
             Height = 32
             Top = 23
-            Width = 587
+            Width = 710
             Align = alTop
             TabOrder = 3
             Text = '1'
@@ -433,7 +433,7 @@ object frmMain: TfrmMain
             Left = 0
             Height = 23
             Top = 55
-            Width = 587
+            Width = 710
             Align = alTop
             Caption = '&Value:'
             FocusControl = edtValueRegister
@@ -443,7 +443,7 @@ object frmMain: TfrmMain
             Left = 0
             Height = 32
             Top = 78
-            Width = 587
+            Width = 710
             Align = alTop
             TabOrder = 5
             Text = '$00'
@@ -451,18 +451,18 @@ object frmMain: TfrmMain
         end
         object gbWriteReadBytesI2c: TGroupBox
           Left = 0
-          Height = 140
+          Height = 188
           Top = 308
-          Width = 589
+          Width = 712
           Align = alTop
           Caption = ' Communication '
-          ClientHeight = 117
-          ClientWidth = 587
+          ClientHeight = 165
+          ClientWidth = 710
           TabOrder = 4
           object btnWriteBytesI2c: TButton
             Left = 8
             Height = 25
-            Top = 80
+            Top = 72
             Width = 75
             Anchors = [akLeft, akBottom]
             Caption = '&Write'
@@ -470,9 +470,9 @@ object frmMain: TfrmMain
             TabOrder = 0
           end
           object btnReadByteI2c: TButton
-            Left = 102
+            Left = 8
             Height = 25
-            Top = 82
+            Top = 104
             Width = 75
             Anchors = [akLeft, akBottom]
             Caption = '&Read'
@@ -483,9 +483,9 @@ object frmMain: TfrmMain
             Left = 0
             Height = 26
             Top = 0
-            Width = 587
+            Width = 710
             Align = alTop
-            Caption = '&Byte(s):        (delimited by spaces or commas for write more than one byte)'
+            Caption = '&Byte(s):        (delimited by spaces or commas for write more than one byte -> only for ''write'' button)'
             FocusControl = edtBytes
             TabOrder = 2
           end
@@ -493,10 +493,39 @@ object frmMain: TfrmMain
             Left = 0
             Height = 32
             Top = 26
-            Width = 587
+            Width = 710
             Align = alTop
             TabOrder = 3
-            Text = '$01'
+            Text = 'p'
+          end
+          object cbAutoReadI2c: TCheckBox
+            Left = 96
+            Height = 26
+            Top = 104
+            Width = 60
+            Anchors = [akLeft, akBottom]
+            Caption = 'au&to'
+            OnClick = cbAutoReadI2cClick
+            TabOrder = 4
+          end
+          object mmReadI2c: TMemo
+            Left = 176
+            Height = 90
+            Top = 64
+            Width = 530
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            ScrollBars = ssAutoBoth
+            TabOrder = 5
+          end
+          object btnWriteStringI2c: TButton
+            Left = 80
+            Height = 25
+            Top = 72
+            Width = 88
+            Anchors = [akLeft, akBottom]
+            Caption = 'Write Strin&g'
+            OnClick = btnWriteStringI2cClick
+            TabOrder = 6
           end
         end
       end
@@ -505,8 +534,8 @@ object frmMain: TfrmMain
   object StatusBar: TStatusBar
     Left = 0
     Height = 24
-    Top = 687
-    Width = 674
+    Top = 678
+    Width = 724
     Panels = <    
       item
         Width = 1000
@@ -515,14 +544,21 @@ object frmMain: TfrmMain
   end
   object mmLog: TMemo
     Left = 0
-    Height = 145
+    Height = 136
     Top = 542
-    Width = 674
+    Width = 724
     Align = alBottom
     Lines.Strings = (
       'log:'
     )
     ScrollBars = ssAutoBoth
     TabOrder = 2
+  end
+  object TimerautoI2c: TTimer
+    Enabled = False
+    Interval = 300
+    OnTimer = TimerautoI2cTimer
+    left = 264
+    top = 296
   end
 end

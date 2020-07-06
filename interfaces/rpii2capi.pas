@@ -28,6 +28,7 @@ type
       procedure writeByte(value: byte); virtual; abstract;
       procedure writeBytes(bytes: pointer; length: longint); virtual; abstract;
       function readByte: byte; virtual; abstract;
+      function readBytes(bytes: pointer; maxLength: longint): longint; virtual; abstract;
   end;
 
 
