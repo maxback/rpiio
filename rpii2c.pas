@@ -17,6 +17,8 @@ uses
 type
   //trpiI2CHandle = cint;
 
+  { TrpiI2CDevice }
+
   TrpiI2CDevice = class(TrpiI2CDeviceAbstract)
     private
       deviceHandle: trpiI2CHandle;
@@ -35,6 +37,7 @@ type
       procedure writeByte(value: byte); override;
       procedure writeBytes(bytes: pointer; length: longint); override;
       function readByte: byte; override;
+      function readBytes(bytes: pointer; maxLength: longint): longint; override;
   end;
 
 implementation
@@ -54,7 +57,7 @@ const
 { --------------------------------------------------------------------------
   Class constructor
   -------------------------------------------------------------------------- }
-constructor trpiI2CDevice.Create;
+constructor TrpiI2CDevice.Create;
 begin
   inherited Create;
   self.isOpen := false;
@@ -64,7 +67,7 @@ end;
 { --------------------------------------------------------------------------
   Class destructor
   -------------------------------------------------------------------------- }
-destructor trpiI2CDevice.Destroy;
+destructor TrpiI2CDevice.Destroy;
 begin
   if self.isOpen then begin
     try
@@ -83,7 +86,7 @@ end;
   <address> is the device address on the I2C bus
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.realOpenDevice(devpath: ansistring; address: cint);
+procedure TrpiI2CDevice.realOpenDevice(devpath: ansistring; address: cint);
 const
   funcname = 'trpiI2CDevice.realOpenDevice: ';
 begin
@@ -122,7 +125,7 @@ end;
   <address> is the device address on the I2C bus
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.openDevice(address: cint);
+procedure TrpiI2CDevice.openDevice(address: cint);
 const
   funcname = 'trpiI2CDevice.openDevice: ';
 begin
@@ -137,7 +140,7 @@ end;
   Close an I2C device handle.
   Raises an exception on failure.
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.closeDevice;
+procedure TrpiI2CDevice.closeDevice;
 const
   funcname = 'trpiI2CDevice.openDevice: ';
 begin
@@ -166,7 +169,7 @@ end;
   <value> is the value to set it to
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.setRegister(register: byte; value: byte);
+procedure TrpiI2CDevice.setRegister(register: byte; value: byte);
 const
   funcname = 'trpiI2CDevice.setRegister: ';
 var
@@ -194,7 +197,7 @@ end;
   Returns the byte read from the device.
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-function trpiI2CDevice.getRegister(register: byte): byte;
+function TrpiI2CDevice.getRegister(register: byte): byte;
 const
   funcname = 'trpiI2CDevice.getRegister: ';
 var
@@ -228,7 +231,7 @@ end;
   <value> is the byte to write.
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.writeByte(value: byte);
+procedure TrpiI2CDevice.writeByte(value: byte);
 const
   funcname = 'trpiI2CDevice.writeByte: ';
 begin
@@ -251,7 +254,7 @@ end;
   <length> is the number of bytes to write.
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-procedure trpiI2CDevice.writeBytes(bytes: pointer; length: longint);
+procedure TrpiI2CDevice.writeBytes(bytes: pointer; length: longint);
 const
   funcname = 'trpiI2CDevice.writeBytes: ';
 begin
@@ -273,7 +276,7 @@ end;
   Returns the byte read.
   Throws an exception on failure
   -------------------------------------------------------------------------- }
-function trpiI2CDevice.readByte: byte;
+function TrpiI2CDevice.readByte: byte;
 const
   funcname = 'trpiI2CDevice.readByte: ';
 var
@@ -291,6 +294,26 @@ begin
     end;
   end;
   result := value;
+end;
+
+function TrpiI2CDevice.readBytes(bytes: pointer; maxLength: longint): longint;
+const
+  funcname = 'trpiI2CDevice.readBytes: ';
+var
+  value: byte;
+begin
+  result := 0;
+  if not self.isOpen then begin
+    raise exception.create(funcname + 'Device is not open');
+  end;
+
+  try
+    result := fpread(self.deviceHandle, bytes, maxLength);
+  except
+    on e: exception do begin
+      raise exception.create(funcname + 'Failed to read from the device: ' + e.message);
+    end;
+  end;
 end;
 
 end.
